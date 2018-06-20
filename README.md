@@ -7,7 +7,7 @@ Supported algoritms
 - cryptonote heavy (v7)
 
 Features
-- Support Stratum mining
+- Support stratum mining
 - Support vardiff
 - Support workers id
 - PPLNS block reward

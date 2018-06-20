@@ -5,9 +5,9 @@ var os = require('os');
 var redis = require('redis');
 
 
-require('./lib/configReader.js');
+require('./libs/configReader.js');
 
-require('./lib/logger.js');
+require('./libs/logger.js');
 
 
 var logSystem = 'master';
@@ -33,29 +33,29 @@ global.redisClient = redis.createClient(config.redis.port, config.redis.host, {
 if (cluster.isWorker){
     switch(process.env.workerType){
         case 'pool':
-            require('./lib/pool.js');
+            require('./libs/pool.js');
             break;
         case 'blockUnlocker':
-            require('./lib/blockUnlocker.js');
+            require('./libs/blockUnlocker.js');
             break;
         case 'paymentProcessor':
-            require('./lib/paymentProcessor.js');
+            require('./libs/paymentProcessor.js');
             break;
         case 'api':
-            require('./lib/api.js');
+            require('./libs/api.js');
             break;
         case 'cli':
-            require('./lib/cli.js');
+            require('./libs/cli.js');
             break
         case 'chartsDataCollector':
-            require('./lib/chartsDataCollector.js');
+            require('./libs/chartsDataCollector.js');
             break
 
     }
     return;
 }
 
-require('./lib/exceptionWriter.js')(logSystem);
+require('./libs/exceptionWriter.js')(logSystem);
 
 
 var selectedModules = (function(){
